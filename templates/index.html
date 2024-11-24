@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Grades</title>
+  </head>
+  <body>
+    <h1>Test Too</h1>
+    <ul>
+      {% for student in students %}
+        <li>First Name: {{student[1]}}</li>
+        <li>Last Name: {{student[2]}}</li>
+      {% endfor %}
+    </ul>
+  </body>
