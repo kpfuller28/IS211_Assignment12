@@ -71,6 +71,35 @@ def addQuiz():
       error = 'There was an error. Please make sure all information is correct and try again.'
       return render_template('/addQuiz', error=error)
     return redirect('/dashboard')
-  return render_template('/addQuiz.html')
+  return render_template('addQuiz.html')
+
+@app.route('/student/<id>')
+def results(id):
+  results = g.db.execute('SELECT * FROM results WHERE student_id = (?)', (id)).fetchall()
+  student = g.db.execute('SELECT * FROM students WHERE id = (?)', (id)).fetchall()
+  print(results)
+
+  return render_template('results.html', student=student[0], results=results)
+
+@app.route('/results/add', methods=['GET', 'POST'])
+def addResults():
+  if request.method == 'POST':
+    studentId = request.form['studentId']
+    quizId = request.form['quizId']
+    results = request.form['results']
+
+    try:
+      print(f"Inserting student {studentId} quiz {quizId} result {results}")
+      g.db.execute('INSERT OR REPLACE INTO results VALUES (?, ?, ?)', (studentId, quizId, results))
+      g.db.commit()
+      return redirect('/dashboard')
+    except:
+      error = 'There was an error. Make sure all the information is correct and try again.'
+      return render_template('addResults.html', error=error, studentIds=studentIds, quizIds=quizIds)
+
+  studentIds = g.db.execute('SELECT id FROM students').fetchall()
+  quizIds = g.db.execute('SELECT id FROM quizzes').fetchall()
+  return render_template('addResults.html', studentIds=studentIds, quizIds=quizIds)
+
 if __name__ == "__main__":
   app.run(debug=True)

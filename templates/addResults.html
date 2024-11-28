@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Result</title>
+  </head>
+  <body>
+    <h2>Add Result Information Below</h2>
+    <form action="/results/add" method="POST">
+      <label for="studentId">Student ID:</label>
+      <select name="studentId" id="studentId">
+        {% for studentId in studentIds %}
+          <option value={{studentId[0]}}>
+            {{studentId[0]}}
+          </option>
+        {% endfor %}
+      </select>
+      <label for="quizId">Quiz ID</label>
+      <select name="quizId" id="quizId">
+        {% for quizId in quizIds %}
+          <option value={{quizId[0]}}>
+            {{quizId[0]}}
+          </option>
+        {% endfor %}
+      </select>
+      <label for="results">Results</label>
+      <input type="number" id="results" name="results" min="0" max="100"/>
+      {% if error %}
+        <p>{{error}}</p>
+      {% endif %}
+      <input type="submit" value="Add Result"/>
+    </form>
+  </body>
+
+  </html>

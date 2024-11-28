@@ -11,7 +11,12 @@
     <title>Dashboard</title>
   </head>
   <body>
-    <h1>Dashboard</h1>
+    <div style="display: flex;">
+      <h1 style="flex: 1%;">Dashboard</h1>
+      <form style="flex: 70%; padding-top: 25px;" action = '/results/add' method="get">
+        <input type="submit" value="Add Results"/>
+      </form>
+    </div>
     <div style="display: flex;">
       <div style="flex: 10%; padding: 10px;">
         <h2>Students</h2>
@@ -33,7 +38,9 @@
                 {{student[0]}}
               </td>
               <td>
-                {{student[1]}}
+                <a href="{{'/student/%s'%student[0]}}">
+                  {{student[1]}}
+                </a>
               </td>
               <td>
                 {{student[2]}}

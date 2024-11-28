@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    table, th, td {
+      border:1px solid black;
+      padding: 5px;
+      border-spacing: 5px 2px;
+    }
+    </style>
+  <head>
+    <title>Results</title>
+  </head>
+
+  <body>
+    <h1>Results</h1>
+    {% if not results %}
+      <h3>No Results</h3>
+    {% else %}
+    <h3>{{student[1]}} {{student[2]}} Quiz Results</h3>
+    <table>
+      <tr>
+        <th>
+          Quiz ID
+        </th>
+        <th>
+          Score
+        </th>
+      </tr>
+      {% for result in results %}
+        <tr>
+          <td>
+            {{result[1]}}
+          </td>
+          <td>
+            {{result[2]}}
+          </td>
+          {% endfor %}
+        </tr>
+    </table>
+    {% endif %}
+    </body>
+  </html>
