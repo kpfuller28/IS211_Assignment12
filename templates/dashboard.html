@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    table, th, td {
+      border:1px solid black;
+      padding: 5px;
+      border-spacing: 5px 2px;
+    }
+    </style>
+  <head>
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <h1>Dashboard</h1>
+    <div style="display: flex;">
+      <div style="flex: 10%; padding: 10px;">
+        <h2>Students</h2>
+        <table>
+          <tr>
+            <th>
+              ID
+            </th>
+            <th>
+              First Name
+            </th>
+            <th>
+              Last Name
+            </th>
+          </tr>
+          {% for student in students %}
+            <tr>
+              <td>
+                {{student[0]}}
+              </td>
+              <td>
+                {{student[1]}}
+              </td>
+              <td>
+                {{student[2]}}
+              </td>
+            </tr>
+          {% endfor %}
+        </table><br>
+        <div>
+          <form action = '/student/add' method="get">
+            <input type="submit" value="Add a Student"/>
+          </form>
+        </div>
+      </div>
+      <div style="flex: 50%; padding: 10px;">
+        <h2>Quizzes</h2>
+        <table>
+          <tr>
+            <th>
+              ID
+            </th>
+            <th>
+              Subject
+            </th>
+            <th>
+              Number of Questions
+            </th>
+            <th>
+              Date
+            </th>
+            {% for quiz in quizzes %}
+              <tr>
+                <td>
+                  {{quiz[0]}}
+                </td>
+                <td>
+                  {{quiz[1]}}
+                </td>
+                <td>
+                  {{quiz[2]}}
+                </td>
+                <td>
+                  {{quiz[3]}}
+                </td>
+              </tr>
+            {% endfor %}
+          </tr>
+        </table><br>
+        <div>
+          <form action = '/quiz/add' method="get">
+            <input type="submit" value="Add a Quiz"/>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
